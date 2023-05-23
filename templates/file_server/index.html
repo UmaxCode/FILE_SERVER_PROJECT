@@ -1,0 +1,38 @@
+{% extends 'file_server/base.html' %}
+
+{% load static %}
+
+{% block title %}
+ Welcome to Send_Lizzy
+{% endblock %}
+
+{% block stylesheet %}
+ <link rel="stylesheet" href="{% static 'styleSheets/lizzy_server/index.css' %}">
+{% endblock %}
+
+{% block content %}
+ <header class="head">
+  <nav class="navigation">
+    <a href="#" id="logo">Send<span class="logo">_Lizzy</span></a>
+    <ul class="log-sign">
+      <li class="log"><a href="{% url 'cus_login' %}">Log In</a></li>
+      <li class="sign"><a href="{% url 'signup' %}">Sign Up</a></li>
+    </ul>
+  </nav>
+ </header>
+ <main>
+  <section class="section-1">
+    <div class="col-1">
+      <div class="info">
+        <h1>Welcome To Send_Lizzy</h1>
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est eligendi tempore, vel alias voluptates repudiandae at fuga? Beatae, ducimus reiciendis! Cupiditate eaque asperiores aut aspernatur voluptatem quisquam alias? Aperiam unde minus eveniet sint numquam tenetur obcaecati id itaque neque veniam.</p>
+      </div>
+    </div>
+    <div class="col-2">
+     <div class="image">
+      <!-- <img src="{% static 'images/image1.png' %}" alt=""> -->
+     </div>
+    </div>
+  </section>
+ </main>
+{% endblock%}

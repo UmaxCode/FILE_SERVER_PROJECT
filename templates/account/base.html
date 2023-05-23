@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>
+    {% block title %}
+    {% endblock %}
+  </title>
+  <style>
+    header.head {
+  padding: 0 40px;
+  background-color: white;
+  box-shadow: 6px 0 6px rgba(0,0,0,0.2);
+  height: 60px;
+  line-height: 60px;
+  }
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+}
+
+.navigation a {
+  text-decoration: none;
+  color: gray;
+  font-size: 20px;
+}
+
+.logo {
+  color: var(--logo-color);
+}
+
+#logo {
+  letter-spacing: 2px;
+  font-weight: bold;
+  font-size: 23px;
+  color: var(--secondary-color);
+}
+
+ul.log-sign {
+  list-style: none;
+  display: flex;
+}
+
+.sign {
+margin-left: 8px;  
+}
+
+.sign a {
+  border: 2px solid var(--secondary-color);
+  padding: 8px;
+  border-radius: 4px;
+  color: var(--secondary-color);
+  transition: color 0.5s, background-color 0.5s;
+}
+
+.sign a:hover {
+  background-color: var(--secondary-color);
+  color: white;
+  text-decoration: underline;
+
+}
+
+.log a {
+  border: 2px solid white;
+  padding: 8px;
+  border-radius: 4px;
+  transition: color 0.5s, background-color 0.5s, border-color 0.5s;
+}
+
+.log a:hover {
+  border-color: var(--input-border);
+  color: var(--secondary-color);
+  background-color: var(--input-border);
+  text-decoration: underline;
+}
+
+.menu {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+ 
+  ul.log-sign {
+    position: fixed;
+    background-color: var(--secondary-color);
+    left: -100%;
+    top: 0;
+    height: 100%;
+    z-index: 2;
+    width: 250px;
+    display: block;
+    padding-top: 20px;
+    overflow: hidden;
+    transition: left 0.5s;
+
+  }
+
+  ul.log-sign.active {
+    left: 0;
+  }
+
+
+
+  ul.log-sign li{
+    position: relative;
+    width: 240px;
+    margin-bottom: 8px;
+    margin: 0;
+    padding:10px 8px;
+  }
+
+  ul.log-sign li a {
+    background-color: white;
+    display:block;
+    padding: 0;
+    border: 0;
+    text-align: center;
+  }
+
+
+
+ 
+
+  .menu {
+    display: block;
+    width: 45px;
+    border: 2px solid var(--secondary-color);
+    padding: 4px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  .menu .bar{
+    height: 4px;
+    width: 100%;
+    margin: 4px auto;
+    background-color: var(--secondary-color);
+    
+  }
+
+
+}
+  </style>
+  {% block stylesheet %}
+  {% endblock %}
+</head>
+<body>
+  <header class="head">
+    <nav class="navigation">
+      <a href="{% url 'index'%}" id="logo">Send<span class="logo">_Lizzy</span></a>
+      <ul class="log-sign">
+        <li class="log"><a href="{% url 'cus_login' %}">Log In</a></li>
+        <li class="sign"><a href="{% url 'signup' %}">Sign Up</a></li>
+      </ul>
+      <div class="menu">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </nav>
+  </header>
+
+  {% block content %}
+
+  {% endblock %}
+  
+  <script>
+    const menu = document.querySelector('.menu')
+
+    const sideBar = document.querySelector('ul.log-sign')
+
+    menu.addEventListener("click", function(){
+      sideBar.classList.toggle('active')
+      console.log(sideBar)
+    })
+
+
+    window.onresize = function(){
+      if (this.innerWidth > 600){
+        sideBar.classList.remove('active')
+      }
+    }
+
+
+  </script>
+</body>
+</html>

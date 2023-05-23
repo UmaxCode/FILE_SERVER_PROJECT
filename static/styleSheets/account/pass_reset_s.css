@@ -1,0 +1,41 @@
+:root {
+  --primary-color: #f2f2f2;
+  --secondary-color: rgb(5, 69, 119);
+  --complementary: #fff;
+  --text-color: rgb(36, 35, 35);
+  --logo-color: rgb(252, 214, 4);
+  --input-border: rgb(109, 148, 179);
+}
+
+*{
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  background-color: var(--primary-color);
+}
+
+.succ-message {
+  padding:20px;
+  width: min(600px, 80%);
+  margin: 40px auto;
+  background-color: var(--complementary);
+  border-radius: 4px;
+  box-shadow: 6px 6px 30px rgba(0, 0, 0, 0.1);
+}
+
+.succ-message h1 {
+  margin-bottom: 10px;
+  font-size: 40px;
+}
+
+.succ-message p {
+  font-size: 20px;
+  line-height: 1.5;
+}
+
+.succ-message svg {
+  margin-right: 10px;
+}
+

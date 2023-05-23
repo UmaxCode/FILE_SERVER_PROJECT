@@ -1,0 +1,157 @@
+:root {
+  --primary-color: #f2f2f2;
+  --secondary-color: rgb(5, 69, 119);
+  --complementary: #fff;
+  --text-color: rgb(36, 35, 35);
+  --logo-color: rgb(252, 214, 4);
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  user-select: none;
+}
+
+body {
+  background-color: var(--primary-color);
+}
+
+header.head {
+  padding: 0 40px;
+  background-color: var(--secondary-color);
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navigation a {
+  text-decoration: none;
+  color: var(--complementary);
+  font-size: 20px;
+}
+
+.logo {
+  color: var(--logo-color);
+}
+
+#logo {
+  letter-spacing: 2px;
+  font-weight: bold;
+  font-size: 23px;
+}
+
+ul.log-sign {
+  list-style: none;
+  display: flex;
+}
+
+.log {
+  margin: 17px;
+}
+
+.sign {
+  margin: 17px 0 17px 17px;
+}
+
+ul.log-sign a{
+  position: relative;
+}
+
+ul.log-sign a::after {
+  position: absolute;
+  content: '';
+  height: 2px;
+  width: 0;
+  background-color: var(--complementary);
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: width 0.3s;
+
+}
+
+ul.log-sign a:hover::after {
+  width: 80%;
+}
+
+section{
+  padding: 0 20px;
+  position: relative;
+  margin-top: 40px;
+}
+
+.section-1 .col-1 {
+  width: 100%;
+  font-size: 20px;
+  text-align: left;
+}
+
+.col-1 h1{
+ font-size: 2.5em;
+ margin-bottom: 8px;
+ color: var(--text-color);
+ font-weight: bold;
+}
+
+.col-1 p {
+  line-height: 1.5;
+}
+
+.section-1 .col-2 {
+  width: 100%;
+  padding-top: 20px;
+}
+
+.section-1 img {
+  width: 100%;
+  pointer-events: none;
+}
+
+@media screen and (max-width: 430px) {
+
+  header.head {
+    padding: 20px;
+  }
+
+  nav.navigation {
+    display: block;
+  }
+
+  ul.log-sign *{
+    padding: 0;
+    margin: 0;
+  }
+
+  ul.log-sign {
+    margin-top: 10px;
+  }
+
+  ul.log-sign .log {
+    margin-right: 15px;
+  }
+
+}
+
+@media screen and (min-width: 800px) {
+  
+  .section-1 {
+    display: flex;
+    justify-content: space-around;
+    column-gap: 20px;
+  }
+
+  .section-1 [class*='col']{
+    width: min(600px, 90%);
+  }
+  
+}
+
+
+
+
+

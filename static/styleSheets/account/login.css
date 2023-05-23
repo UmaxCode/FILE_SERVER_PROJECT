@@ -1,0 +1,102 @@
+:root {
+  --primary-color: #f2f2f2;
+  --secondary-color: rgb(5, 69, 119);
+  --complementary: #fff;
+  --text-color: rgb(36, 35, 35);
+  --logo-color: rgb(252, 214, 4);
+  --input-border: rgba(118, 155, 186, 0.935);
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  box-sizing: border-box;
+  user-select: none;
+  font-size: 20px;
+}
+
+body {
+  background-color: var(--primary-color);
+}
+
+.form-container {
+  width: min(500px, 90%);
+  padding: 30px;
+  margin: 40px auto;
+  background-color: var(--complementary);
+  border-radius: 6px;
+}
+
+form input {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 8px;
+  border: 1px solid var(--secondary-color);
+  border-radius: 4px;
+}
+
+
+input::placeholder{
+  color: var(--text-color);
+}
+
+.avatar {
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+form .label {
+  padding: 4px;
+  color: var(--secondary-color);
+}
+
+form input {
+  margin-bottom: 8px;
+}
+
+input[type='submit']{
+  margin-top: 15px;
+  background-color: var(--secondary-color);
+  color: var(--complementary);
+  font-weight: bold;
+  border: none;
+}
+
+.password, .create-acc {
+  padding: 12px;
+  text-align: center;
+}
+
+
+.password a {
+  color: blue;
+  text-decoration: none;
+}
+
+.create-acc {
+  margin-top: 12px;
+}
+
+.create-acc a{
+   text-decoration: none;
+   background-color: var(--secondary-color);
+   padding: 12px;
+   color: var(--complementary);
+   border-radius: 4px;
+}
+
+.message {
+  background-color: white;
+  padding: 20px;
+  color: red;
+  border-radius: 4px;
+  text-align: center;
+  width: min(600px, 90%);
+  margin: 20px auto;
+}
+
+
+
+
+
