@@ -1,0 +1,133 @@
+{% extends 'file_server/base.html' %} {% load static %} {% block stylesheet %}
+<link
+  rel="stylesheet"
+  href="{% static 'styleSheets/lizzy_server/home.css' %}"
+/>
+
+{% endblock %} {% block content %}
+
+<header class="head">
+  <nav class="navigation">
+    <a href="">Send_Lizzy</a>
+    <div class="menu-wrapper">
+      <div class="menu">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+      </div>
+    </div>
+    <div class="collaspe">
+      <form action="" method="post" class="search">
+        {% csrf_token %}
+        <div class="input">
+          <input type="search" name="search" id="" placeholder="title..." />
+        </div>
+        <div class="submit">
+          <input type="submit" value="Search" />
+        </div>
+      </form>
+
+      <ul class="profile">
+        <li>
+          <a class="profile" href="javascript:void(0)">{{user_profile}}</a>
+          <div class="drop-down">
+            <ul>
+              <li><a href="{% url 'password_change' %}">Change password</a></li>
+              <li><a href="{% url 'logout' %}">Log out</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<div class="side-bar">
+  <form action="" method="post">
+    <input type="search" name="search" placeholder="type..." />
+    <input type="submit" value="search" />
+  </form>
+  <ul class="s-profile">
+    <li><a href="{% url 'password_change' %}">Change password</a></li>
+    <li><a href="{% url 'logout' %}">Log out</a></li>
+  </ul>
+</div>
+
+<div class="content">
+  <div class="message">
+    <h1>Messages</h1>
+  </div>
+
+  <div class="wrapper-content">
+    {% for document in documents%}
+    <div class="wrapper">
+      <div class="side">
+        <div class="box">S</div>
+      </div>
+      <div class="items">
+        <h1>Title</h1>
+        <p>Description</p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("move");
+      } else {
+        entry.target.classList.remove("move");
+      }
+    });
+  });
+
+  const wrapper = document.querySelectorAll(".wrapper");
+
+  wrapper.forEach((element) => {
+    observer.observe(element);
+  });
+
+  const content = document.querySelector(".wrapper-content");
+  const message = document.querySelector(".message");
+
+  content.addEventListener("scroll", function () {
+    if (this.scrollTop > 10) {
+      message.classList.add("shadow");
+    } else {
+      message.classList.remove("shadow");
+    }
+  });
+
+  const dropdown = document.querySelector(".drop-down");
+
+  const profile = document.querySelector("a.profile");
+
+  profile.addEventListener("click", function () {
+    dropdown.classList.toggle("active");
+  });
+
+  const menu = document.querySelector(".menu");
+
+  const side_bar = document.querySelector(".side-bar");
+
+  const sideOb = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        side_bar.style.display = "block";
+      } else {
+        side_bar.style.display = "none";
+        side_bar.classList.remove("open");
+      }
+    });
+  });
+
+  sideOb.observe(menu);
+
+  menu.addEventListener("click", function () {
+    side_bar.classList.toggle("open");
+  });
+</script>
+{% endblock%}

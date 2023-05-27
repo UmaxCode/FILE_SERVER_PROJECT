@@ -9,4 +9,10 @@ def index(request):
 
 def homepage_view(request):
 
-    return HttpResponse(f'welcome {request.user}')
+
+
+    context = {
+        "user_profile":request.user,
+        "documents": [1, 2, 3, 4, 5, 1, 2, 3, 4, 5 ,6, 3, 4, 5 ,6 ,6, 6, 7, 7, 7, 7 ,7, 7, 7 ,7, 7]
+        }
+    return render(request, 'file_server/feed_page.html', context)
