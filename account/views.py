@@ -27,7 +27,7 @@ def signUp_view(request):
             email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password')
             con_password = form.cleaned_data.get('con_password')
-            username = email[0:3]
+            username = email[0]
 
             if password == con_password:  
               user = User.objects.create_user(username=username,email=email, password=password)

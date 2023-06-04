@@ -10,6 +10,8 @@ class Document(models.Model):
 
     file = models.FileField()
 
+    num_downloads = models.PositiveBigIntegerField(default=0)
+
     def __str__(self):
         
         return self.title

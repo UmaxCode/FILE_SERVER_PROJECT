@@ -6,7 +6,7 @@
   --logo-color: rgb(252, 214, 4);
 }
 
-*{
+* {
   margin: 0;
   padding: 0;
   font-family: Arial, Helvetica, sans-serif;
@@ -19,7 +19,6 @@ body {
 }
 
 header.head {
-  padding: 0 40px;
   background-color: var(--secondary-color);
 }
 
@@ -27,6 +26,10 @@ header.head {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: min(1500px, 90%);
+  margin: auto;
+
+  overflow: hidden;
 }
 
 .navigation a {
@@ -43,6 +46,8 @@ header.head {
   letter-spacing: 2px;
   font-weight: bold;
   font-size: 23px;
+  display: inline-block;
+  padding: 20px 0;
 }
 
 ul.log-sign {
@@ -58,28 +63,27 @@ ul.log-sign {
   margin: 17px 0 17px 17px;
 }
 
-ul.log-sign a{
+ul.log-sign a {
   position: relative;
 }
 
 ul.log-sign a::after {
   position: absolute;
-  content: '';
-  height: 2px;
+  content: "";
+  height: 3px;
   width: 0;
   background-color: var(--complementary);
-  bottom: -6px;
+  bottom: -8px;
   left: 50%;
   transform: translateX(-50%);
   transition: width 0.3s;
-
 }
 
 ul.log-sign a:hover::after {
   width: 80%;
 }
 
-section{
+section {
   padding: 0 20px;
   position: relative;
   margin-top: 40px;
@@ -91,11 +95,11 @@ section{
   text-align: left;
 }
 
-.col-1 h1{
- font-size: 2.5em;
- margin-bottom: 8px;
- color: var(--text-color);
- font-weight: bold;
+.col-1 h1 {
+  font-size: 2.5em;
+  margin-bottom: 8px;
+  color: var(--text-color);
+  font-weight: bold;
 }
 
 .col-1 p {
@@ -112,46 +116,62 @@ section{
   pointer-events: none;
 }
 
-@media screen and (max-width: 430px) {
-
-  header.head {
-    padding: 20px;
-  }
-
+@media screen and (max-width: 800px) {
   nav.navigation {
     display: block;
+    position: relative;
+    height: 70px;
+    transition: height 0.5s;
   }
 
-  ul.log-sign *{
-    padding: 0;
-    margin: 0;
+  .menu {
+    display: block;
+    position: absolute;
+    top: 15px;
+    right: 0;
   }
 
   ul.log-sign {
-    margin-top: 10px;
+    display: block;
   }
 
-  ul.log-sign .log {
-    margin-right: 15px;
+  ul.log-sign li {
+    display: block;
+    padding: 12px 8px;
+    border-radius: 4px;
+    margin: 15px 0;
   }
 
+  ul.log-sign li:hover {
+    background-color: royalblue;
+  }
+
+  ul.log-sign li a {
+    display: block;
+    padding: 0px 0;
+  }
+
+  ul.log-sign li a::after {
+    display: none;
+  }
 }
 
 @media screen and (min-width: 800px) {
-  
   .section-1 {
     display: flex;
     justify-content: space-around;
     column-gap: 20px;
   }
 
-  .section-1 [class*='col']{
+  .section-1 [class*="col"] {
     width: min(600px, 90%);
   }
-  
+
+  .menu {
+    display: none;
+  }
+
+  nav.navigation {
+    height: 70px;
+  }
 }
-
-
-
-
-

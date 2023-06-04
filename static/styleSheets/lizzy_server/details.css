@@ -1,6 +1,6 @@
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css");
 
-*{
+* {
   box-sizing: border-box;
   font-size: 20px;
   font-family: Arial, Helvetica, sans-serif;
@@ -17,17 +17,12 @@ img {
   width: 100%;
   border-radius: 4px 4px 0 0;
   display: flex;
-  
 }
 
-h1{
+h1 {
   padding: 20px;
   text-align: center;
   font-size: 1.8em;
-}
-
-.file-card {
-
 }
 
 .container {
@@ -36,44 +31,93 @@ h1{
 }
 .description {
   background-color: white;
-  padding:12px
+  padding: 12px;
 }
 
 .pre-down {
   margin-top: 12px;
 }
 
-.pre-down a:first-child button {
+.pre-down > a {
+  display: inline-block;
   background-color: rgb(245, 75, 37);
   margin-right: 8px;
-}
-button {
-  padding: 12px;
-  border: none;
+  padding: 12px 25px;
   border-radius: 4px;
-  background-color: rgb(20, 134, 20);
+  color: white;
+
+  text-decoration: none;
+}
+
+.pre-down .download,
+.share {
+  display: inline-block;
+  padding: 12px;
+  border-radius: 4px;
+  background-color: green;
+  color: white;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.pre-down .share {
+  background-color: royalblue;
+  padding: 12px 30px;
+}
+
+.modal {
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.3);
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.modal .container {
+  background-color: #f2f2f2;
+  width: min(400px, 90%);
+  height: 400px;
+  position: relative;
+  padding: 50px 20px;
+  border-radius: 4px;
+}
+
+.modal .container input {
+  padding: 12px;
+  display: block;
+  position: relative;
+  border: none;
+  outline: none;
+  width: 100%;
+  border-radius: 4px;
+}
+
+.modal.active {
+  display: flex;
+}
+
+.modal .container input[type="submit"] {
+  margin-top: 20px;
+  background-color: green;
   color: white;
   cursor: pointer;
 }
 
-@media screen and (max-width: 350px) {
-  button {
+@media screen and (max-width: 441px) {
+  .pre-down a,
+  .pre-down button {
     display: block;
     width: 100%;
     margin-bottom: 10px;
-  
   }
-  
 }
-
-
 
 i {
   margin-right: 4px;
 }
-
-
-
-
-
-

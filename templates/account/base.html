@@ -1,192 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>
-    {% block title %}
-    {% endblock %}
-  </title>
-  <style>
-    header.head {
-  padding: 0 40px;
-  background-color: white;
-  box-shadow: 6px 0 6px rgba(0,0,0,0.2);
-  height: 60px;
-  line-height: 60px;
-  }
-
-.navigation {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-}
-
-.navigation a {
-  text-decoration: none;
-  color: gray;
-  font-size: 20px;
-}
-
-.logo {
-  color: var(--logo-color);
-}
-
-#logo {
-  letter-spacing: 2px;
-  font-weight: bold;
-  font-size: 23px;
-  color: var(--secondary-color);
-}
-
-ul.log-sign {
-  list-style: none;
-  display: flex;
-}
-
-.sign {
-margin-left: 8px;  
-}
-
-.sign a {
-  border: 2px solid var(--secondary-color);
-  padding: 8px;
-  border-radius: 4px;
-  color: var(--secondary-color);
-  transition: color 0.5s, background-color 0.5s;
-}
-
-.sign a:hover {
-  background-color: var(--secondary-color);
-  color: white;
-  text-decoration: underline;
-
-}
-
-.log a {
-  border: 2px solid white;
-  padding: 8px;
-  border-radius: 4px;
-  transition: color 0.5s, background-color 0.5s, border-color 0.5s;
-}
-
-.log a:hover {
-  border-color: var(--input-border);
-  color: var(--secondary-color);
-  background-color: var(--input-border);
-  text-decoration: underline;
-}
-
-.menu {
-  display: none;
-}
-
-@media screen and (max-width: 600px) {
- 
-  ul.log-sign {
-    position: fixed;
-    background-color: var(--secondary-color);
-    left: -100%;
-    top: 0;
-    height: 100%;
-    z-index: 2;
-    width: 250px;
-    display: block;
-    padding-top: 20px;
-    overflow: hidden;
-    transition: left 0.5s;
-
-  }
-
-  ul.log-sign.active {
-    left: 0;
-  }
-
-
-
-  ul.log-sign li{
-    position: relative;
-    width: 240px;
-    margin-bottom: 8px;
-    margin: 0;
-    padding:10px 8px;
-  }
-
-  ul.log-sign li a {
-    background-color: white;
-    display:block;
-    padding: 0;
-    border: 0;
-    text-align: center;
-  }
-
-
-
- 
-
-  .menu {
-    display: block;
-    width: 45px;
-    border: 2px solid var(--secondary-color);
-    padding: 4px;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-
-  .menu .bar{
-    height: 4px;
-    width: 100%;
-    margin: 4px auto;
-    background-color: var(--secondary-color);
-    
-  }
-
-
-}
-  </style>
-  {% block stylesheet %}
-  {% endblock %}
-</head>
-<body>
-  <header class="head">
-    <nav class="navigation">
-      <a href="{% url 'index'%}" id="logo">Send<span class="logo">_Lizzy</span></a>
-      <ul class="log-sign">
-        <li class="log"><a href="{% url 'cus_login' %}">Log In</a></li>
-        <li class="sign"><a href="{% url 'signup' %}">Sign Up</a></li>
-      </ul>
-      <div class="menu">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-      </div>
-    </nav>
-  </header>
-
-  {% block content %}
-
-  {% endblock %}
-  
-  <script>
-    const menu = document.querySelector('.menu')
-
-    const sideBar = document.querySelector('ul.log-sign')
-
-    menu.addEventListener("click", function(){
-      sideBar.classList.toggle('active')
-      console.log(sideBar)
-    })
-
-
-    window.onresize = function(){
-      if (this.innerWidth > 600){
-        sideBar.classList.remove('active')
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %} {% endblock %}</title>
+    <style>
+      :root {
+        --primary-color: #f2f2f2;
+        --secondary-color: rgb(5, 69, 119);
+        --complementary: #fff;
+        --text-color: rgb(36, 35, 35);
+        --logo-color: rgb(252, 214, 4);
       }
-    }
 
+      * {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        box-sizing: border-box;
+        user-select: none;
+      }
 
-  </script>
-</body>
+      body {
+        background-color: var(--primary-color);
+      }
+
+      header.head {
+        background-color: var(--secondary-color);
+      }
+
+      .navigation {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: min(1500px, 90%);
+        margin: auto;
+
+        overflow: hidden;
+      }
+
+      .navigation a {
+        text-decoration: none;
+        color: var(--complementary);
+        font-size: 20px;
+      }
+
+      .logo {
+        color: var(--logo-color);
+      }
+
+      #logo {
+        letter-spacing: 2px;
+        font-weight: bold;
+        font-size: 23px;
+        display: inline-block;
+        padding: 20px 0;
+      }
+
+      ul.log-sign {
+        list-style: none;
+        display: flex;
+      }
+
+      .log {
+        margin: 17px;
+      }
+
+      .sign {
+        margin: 17px 0 17px 17px;
+      }
+
+      ul.log-sign a {
+        position: relative;
+      }
+
+      ul.log-sign a::after {
+        position: absolute;
+        content: "";
+        height: 3px;
+        width: 0;
+        background-color: var(--complementary);
+        bottom: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: width 0.3s;
+      }
+
+      ul.log-sign a:hover::after {
+        width: 80%;
+      }
+
+      section {
+        padding: 0 20px;
+        position: relative;
+        margin-top: 40px;
+      }
+
+      .section-1 .col-1 {
+        width: 100%;
+        font-size: 20px;
+        text-align: left;
+      }
+
+      .col-1 h1 {
+        font-size: 2.5em;
+        margin-bottom: 8px;
+        color: var(--text-color);
+        font-weight: bold;
+      }
+
+      .col-1 p {
+        line-height: 1.5;
+      }
+
+      .section-1 .col-2 {
+        width: 100%;
+        padding-top: 20px;
+      }
+
+      .section-1 img {
+        width: 100%;
+        pointer-events: none;
+      }
+
+      @media screen and (max-width: 800px) {
+        nav.navigation {
+          display: block;
+          position: relative;
+          height: 70px;
+          transition: height 0.5s;
+        }
+
+        .menu {
+          display: block;
+          position: absolute;
+          top: 15px;
+          right: 0;
+        }
+
+        ul.log-sign {
+          display: block;
+        }
+
+        ul.log-sign li {
+          display: block;
+          padding: 12px 8px;
+          border-radius: 4px;
+          margin: 15px 0;
+        }
+
+        ul.log-sign li:hover {
+          background-color: royalblue;
+        }
+
+        ul.log-sign li a {
+          display: block;
+          padding: 0px 0;
+        }
+
+        ul.log-sign li a::after {
+          display: none;
+        }
+      }
+
+      @media screen and (min-width: 800px) {
+        .section-1 {
+          display: flex;
+          justify-content: space-around;
+          column-gap: 20px;
+        }
+
+        .section-1 [class*="col"] {
+          width: min(600px, 90%);
+        }
+
+        .menu {
+          display: none;
+        }
+
+        nav.navigation {
+          height: 70px;
+        }
+      }
+    </style>
+    {% block stylesheet %} {% endblock %}
+  </head>
+  <body>
+    <header class="head">
+      <nav class="navigation">
+        <a href="{% url 'index' %}" id="logo"
+          >Send<span class="logo">_Lizzy</span></a
+        >
+        <ul class="log-sign">
+          <li class="log"><a href="{% url 'cus_login' %}">Log In</a></li>
+          <li class="sign"><a href="{% url 'signup' %}">Sign Up</a></li>
+        </ul>
+        <div class="menu" style="cursor: pointer">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="40"
+            height="40"
+            fill="white"
+            class="bi bi-list"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+            />
+          </svg>
+        </div>
+      </nav>
+    </header>
+
+    {% block content %} {% endblock %}
+
+    <script>
+      const menu = document.querySelector(".menu");
+      const nav_bar = document.querySelector(".navigation");
+      menu.addEventListener("click", function () {
+        if (!nav_bar.style.height) {
+          nav_bar.style.height = nav_bar.scrollHeight + "px";
+        } else {
+          nav_bar.style.height = "";
+        }
+      });
+
+      const menuObserver = new IntersectionObserver((observable) => {
+        observable.forEach((obs) => {
+          if (!obs.isIntersecting) {
+            nav_bar.style.height = "";
+          }
+        });
+      });
+
+      menuObserver.observe(menu);
+    </script>
+  </body>
 </html>

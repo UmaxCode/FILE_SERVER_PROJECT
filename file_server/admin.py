@@ -4,6 +4,15 @@ from .models import Document
 
 # Register your models here.
 
+class AdminDocument(admin.ModelAdmin):
+    
+    list_display = (
+        "title",
+        "description",
+        "file",
+        "num_downloads"
+    )
 
-admin.site.register(Document)
+
+admin.site.register(Document, AdminDocument)
 

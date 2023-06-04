@@ -1,33 +1,53 @@
-{% extends 'file_server/base.html'%}
-
-{% load static %}
-
-{% block stylesheet%}
-<link rel="stylesheet" href="{% static 'styleSheets/lizzy_server/details.css'%}">
-{% endblock%}
-
-
-{% block content %} 
+{% extends 'file_server/base.html'%} {% load static %} {% block stylesheet%}
+<link
+  rel="stylesheet"
+  href="{% static 'styleSheets/lizzy_server/details.css'%}"
+/>
+{% endblock%} {% block content %}
 <h1>{{document.title}}</h1>
 <div class="container">
   <div class="file-card">
     <div class="image">
-      <img src="{% static 'images/PDF-image.png'%}" alt="">
-
-      {% if %}
+      <img src="{% static 'images/PDF-image.png'%}" alt="" />
     </div>
     <div class="description">
-      <p>
-        {{document.description}}
-       
-      </p>
+      <p>{{document.description}}</p>
     </div>
   </div>
   <div class="pre-down">
-    <a href="{{ document.file.url }}"><button><i class="bi bi-eye"></i>Preview</button></a>
-    
-    <a href="{{document.file.url}}" download="file"><button><i class="bi bi-download"></i>Download</button>
+    <a href="{{ document.file.url }}" target="_blank"
+      ><i class="bi bi-eye"></i>Preview</a
+    >
+    <a class="download" href="{{ document.file.url }}" download>
+      <i class="bi bi-download"></i>Download
     </a>
+
+    <button class="share"><i class="bi bi-share-fill"></i>Share</button>
   </div>
 </div>
+
+<div class="modal">
+  <div class="container">
+    <form action="" method="post">
+      {% csrf_token %}
+      <input type="email" name="email" id="" placeholder="email" />
+      <input type="submit" value="Send" name="share" />
+    </form>
+  </div>
+</div>
+
+<script>
+  const share_btn = document.querySelector(".share");
+  const modal = document.querySelector(".modal");
+
+  share_btn.addEventListener("click", function () {
+    modal.classList.add("active");
+  });
+
+  modal.addEventListener("click", function (event) {
+    if (event.target == this) {
+      this.classList.remove("active");
+    }
+  });
+</script>
 {%endblock%}

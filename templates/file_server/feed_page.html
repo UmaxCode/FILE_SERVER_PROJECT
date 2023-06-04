@@ -9,43 +9,58 @@
 <header class="head">
   <nav class="navigation">
     <a href="">Send_Lizzy</a>
-    <div class="menu-wrapper">
-      <div class="menu">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-      </div>
+
+    <div class="menu">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="40"
+        height="40"
+        fill="white"
+        class="bi bi-list"
+        viewBox="0 0 16 16"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+        />
+      </svg>
     </div>
-    <div class="collaspe">
+
+    <div class="search-container">
       <form action="" method="post" class="search">
         {% csrf_token %}
         <div class="input">
-          <input type="search" name="search" id="" placeholder="title..." />
+          <input
+            type="search"
+            name="search"
+            id=""
+            placeholder="search by title..."
+          />
         </div>
         <div class="submit">
           <input type="submit" value="Search" />
         </div>
       </form>
-
-      <ul class="profile">
-        <li>
-          <a class="profile" href="javascript:void(0)">{{user_profile}}</a>
-          <div class="drop-down">
-            <ul>
-              <li><a href="{% url 'password_change' %}">Change password</a></li>
-              <li><a href="{% url 'logout' %}">Log out</a></li>
-            </ul>
-          </div>
-        </li>
-      </ul>
     </div>
+
+    <ul class="profile">
+      <li>
+        <a class="profile" href="javascript:void(0)">{{user_profile}}</a>
+        <div class="drop-down">
+          <ul>
+            <li><a href="{% url 'password_change' %}">Change password</a></li>
+            <li><a href="{% url 'logout' %}">Log out</a></li>
+          </ul>
+        </div>
+      </li>
+    </ul>
   </nav>
 </header>
 
 <div class="side-bar">
   <form action="" method="post">
-    <input type="search" name="search" placeholder="type..." />
+    {% csrf_token%}
+    <input type="search" name="search" placeholder="search by title..." />
     <input type="submit" value="search" />
   </form>
   <ul class="s-profile">
@@ -80,6 +95,7 @@
     {% endfor %}
   </div>
 </div>
+<div class="modal"></div>
 <script>
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -118,6 +134,8 @@
 
   const menu = document.querySelector(".menu");
 
+  const modal = document.querySelector(".modal");
+
   const side_bar = document.querySelector(".side-bar");
 
   const sideOb = new IntersectionObserver((entries) => {
@@ -127,6 +145,7 @@
       } else {
         side_bar.style.display = "none";
         side_bar.classList.remove("open");
+        modal.classList.remove("open");
       }
     });
   });
@@ -135,6 +154,12 @@
 
   menu.addEventListener("click", function () {
     side_bar.classList.toggle("open");
+    modal.classList.toggle("open");
+  });
+
+  modal.addEventListener("click", function () {
+    this.classList.remove("open");
+    side_bar.classList.remove("open");
   });
 </script>
 {% endblock%}

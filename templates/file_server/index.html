@@ -1,38 +1,77 @@
-{% extends 'file_server/base.html' %}
-
-{% load static %}
-
-{% block title %}
- Welcome to Send_Lizzy
-{% endblock %}
-
-{% block stylesheet %}
- <link rel="stylesheet" href="{% static 'styleSheets/lizzy_server/index.css' %}">
-{% endblock %}
-
-{% block content %}
- <header class="head">
+{% extends 'file_server/base.html' %} {% load static %} {% block title %}
+Welcome to Send_Lizzy {% endblock %} {% block stylesheet %}
+<link
+  rel="stylesheet"
+  href="{% static 'styleSheets/lizzy_server/index.css' %}"
+/>
+{% endblock %} {% block content %}
+<header class="head">
   <nav class="navigation">
     <a href="#" id="logo">Send<span class="logo">_Lizzy</span></a>
     <ul class="log-sign">
       <li class="log"><a href="{% url 'cus_login' %}">Log In</a></li>
       <li class="sign"><a href="{% url 'signup' %}">Sign Up</a></li>
     </ul>
+    <div class="menu" style="cursor: pointer">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="40"
+        height="40"
+        fill="white"
+        class="bi bi-list"
+        viewBox="0 0 16 16"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
+        />
+      </svg>
+    </div>
   </nav>
- </header>
- <main>
+</header>
+<main>
   <section class="section-1">
     <div class="col-1">
       <div class="info">
         <h1>Welcome To Send_Lizzy</h1>
-      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est eligendi tempore, vel alias voluptates repudiandae at fuga? Beatae, ducimus reiciendis! Cupiditate eaque asperiores aut aspernatur voluptatem quisquam alias? Aperiam unde minus eveniet sint numquam tenetur obcaecati id itaque neque veniam.</p>
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est eligendi
+          tempore, vel alias voluptates repudiandae at fuga? Beatae, ducimus
+          reiciendis! Cupiditate eaque asperiores aut aspernatur voluptatem
+          quisquam alias? Aperiam unde minus eveniet sint numquam tenetur
+          obcaecati id itaque neque veniam.
+        </p>
       </div>
     </div>
     <div class="col-2">
-     <div class="image">
-      <!-- <img src="{% static 'images/image1.png' %}" alt=""> -->
-     </div>
+      <div class="image">
+        <!-- <img src="{% static 'images/image1.png' %}" alt=""> -->
+      </div>
     </div>
   </section>
- </main>
+  <section class="section-2"></section>
+</main>
+
+<script>
+  const menu = document.querySelector(".menu");
+  const nav_bar = document.querySelector(".navigation");
+
+  menu.addEventListener("click", function () {
+    if (!nav_bar.style.height) {
+      nav_bar.style.height = nav_bar.scrollHeight + "px";
+    } else {
+      nav_bar.style.height = "";
+    }
+  });
+
+  const menuObserver = new IntersectionObserver((observable) => {
+    observable.forEach((obs) => {
+      if (!obs.isIntersecting) {
+        nav_bar.style.height = "";
+      }
+    });
+  });
+
+  menuObserver.observe(menu);
+</script>
 {% endblock%}
