@@ -35,26 +35,70 @@ Welcome to Send_Lizzy {% endblock %} {% block stylesheet %}
       <div class="info">
         <h1>Welcome To Send_Lizzy</h1>
         <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Est eligendi
-          tempore, vel alias voluptates repudiandae at fuga? Beatae, ducimus
-          reiciendis! Cupiditate eaque asperiores aut aspernatur voluptatem
-          quisquam alias? Aperiam unde minus eveniet sint numquam tenetur
-          obcaecati id itaque neque veniam.
+          A Digital platform that distributes documents in the likes of wedding
+          cards, admission forms etc. on behalf of various businesses to
+          different users.
         </p>
+      </div>
+
+      <div class="timeline">
+        <div class="container left">
+          <span class="circle"></span>
+          <div class="text">
+            <h1>Admin</h1>
+            <p>Files intended for the users are uploaded by the admin</p>
+            <span class="arrow"></span>
+          </div>
+        </div>
+        <div class="container right">
+          <span class="circle"></span>
+          <div class="text">
+            <h1>Users</h1>
+            <p>
+              The files are either previewed, downloaded and shared by the user
+            </p>
+            <span class="arrow"></span>
+          </div>
+        </div>
       </div>
     </div>
     <div class="col-2">
       <div class="image">
-        <!-- <img src="{% static 'images/image1.png' %}" alt=""> -->
+        <img src="{% static 'images/index_image.webp' %}" alt="" />
       </div>
     </div>
   </section>
   <section class="section-2"></section>
 </main>
 
+<div class="footer">
+  <p>
+    For more enquery contact us on
+    <span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="16"
+        height="16"
+        fill="currentColor"
+        class="bi bi-telephone-fill"
+        viewBox="0 0 16 16"
+      >
+        <path
+          fill-rule="evenodd"
+          d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"
+        />
+      </svg>
+    </span>
+    +233548575292
+  </p>
+  <p>All right reserved &copy; Umaxcode</p>
+</div>
+
 <script>
   const menu = document.querySelector(".menu");
   const nav_bar = document.querySelector(".navigation");
+
+  const header = document.querySelector(".head");
 
   menu.addEventListener("click", function () {
     if (!nav_bar.style.height) {
@@ -71,7 +115,14 @@ Welcome to Send_Lizzy {% endblock %} {% block stylesheet %}
       }
     });
   });
-
   menuObserver.observe(menu);
+
+  window.addEventListener("scroll", function () {
+    if (this.scrollY > 20) {
+      header.classList.add("scroll");
+    } else {
+      header.classList.remove("scroll");
+    }
+  });
 </script>
 {% endblock%}

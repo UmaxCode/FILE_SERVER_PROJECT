@@ -1,14 +1,12 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-
-
+from django.db.models import Q
 from django.views.generic import DetailView
-
-from django.core.mail import send_mail, EmailMessage
-from django.conf import settings
-
+from pathlib import Path
+from django.core.mail import EmailMessage
 from .models import Document
+
 # Create your views here.
 
 def index(request):
@@ -19,16 +17,21 @@ def index(request):
 @login_required
 def homepage_view(request):
 
+    documents = Document.objects.all()
+    search_text = ""
+    
     if request.method == "POST":
         search_text = request.POST["search"]
 
-        return HttpResponse(f"The search text is {search_text}")
+        if len(search_text):
+            query_result = Document.objects.filter(Q(title__icontains=f"{search_text}") | Q(description__icontains=f"{search_text}"))
+            documents = query_result
 
-    documents = Document.objects.all()
-    
+
     context = {
         "user_profile":request.user,
-        "documents": documents
+        "documents": documents,
+        'search_text': search_text
         }
     return render(request, 'file_server/feed_page.html', context)
 
@@ -53,9 +56,6 @@ def details_view(request, pk):
         description = document.description
         file = document.file
 
-        # send_mail(title, description, 'settings.EMAIL_HOST_USER', 
-        # [email], fail_silently=False)
-
         email_send = EmailMessage(title, description,'settings.EMAIL_HOST_USER', [email])
 
         email_send.attach_file(file.path)
@@ -73,10 +73,30 @@ def details_view(request, pk):
     return render(request, "file_server/details.html", context)
 
 
+def download_document(request, pk):
+    document = Document.objects.get(pk=pk)
+    file_path = document.file.path
 
+    with open(file_path, 'rb') as file:
+        
+        data = file.read()
 
-    
+        extension = getFileExtension(file_path)
 
+        if extension == '.pdf':
+            response = HttpResponse(data, content_type='application/pdf')
+        elif extension == '.mp4':
+            response = HttpResponse(data, content_type='video/mp4')
+        elif extension == '.mp3':
+            response = HttpResponse(data, content_type='audio/mpeg')
+        elif extension == ".jpg":
+            response = HttpResponse(data, content_type='image/jpeg')
+        else:
+            response = HttpResponse(data, content_type='application/octet-stream')
+        response['Content_Disposition']='attachment;'
 
-    
+    return response
 
+def getFileExtension(file_path):
+    path = Path(file_path)
+    return path.suffix

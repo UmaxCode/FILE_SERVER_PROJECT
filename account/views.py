@@ -55,7 +55,7 @@ def login_view(request):
             
             email = form.cleaned_data.get('email')
             password = form.cleaned_data.get('password')
-            username = email[0:3]
+            username = email[0]
 
             user = authenticate(request, username=username, email=email, password=password)
 

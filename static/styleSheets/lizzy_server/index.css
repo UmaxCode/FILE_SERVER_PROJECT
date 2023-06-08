@@ -16,16 +16,27 @@
 
 body {
   background-color: var(--primary-color);
+  margin-top: 90px;
 }
 
 header.head {
   background-color: var(--secondary-color);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 99;
+}
+
+header.scroll {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
 }
 
 .navigation {
   display: flex;
   justify-content: space-between;
   align-items: center;
+
   width: min(1500px, 90%);
   margin: auto;
 
@@ -111,6 +122,15 @@ section {
   padding-top: 20px;
 }
 
+/* testing */
+.footer {
+  margin-top: 20px;
+  background-color: rgb(5, 69, 119);
+  padding: 20px;
+  color: white;
+  text-align: center;
+}
+
 .section-1 img {
   width: 100%;
   pointer-events: none;
@@ -173,5 +193,107 @@ section {
 
   nav.navigation {
     height: 70px;
+  }
+}
+
+/* testing */
+.timeline {
+  width: 100%;
+  margin: 20px auto;
+  position: relative;
+}
+
+.timeline .container.right {
+  left: 50%;
+}
+
+.timeline::after {
+  content: "";
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  height: 50%;
+  width: 4px;
+  background-color: rgb(5, 69, 119);
+}
+
+.timeline .container {
+  position: relative;
+  width: 50%;
+  left: 0;
+  padding: 20px 40px;
+}
+
+.text {
+  padding: 12px;
+  background-color: rgb(5, 69, 119);
+  border-radius: 4px;
+  position: relative;
+  color: white;
+}
+
+.text h1 {
+  font-size: 25px;
+  margin-bottom: 10px;
+  color: white;
+}
+
+.text small {
+  display: inline-block;
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.circle {
+  position: absolute;
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  background-color: rgb(5, 69, 119);
+  right: -20px;
+  top: 24px;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.timeline .container.right .circle {
+  left: -20px;
+}
+
+.text .arrow {
+  height: 0;
+  width: 0;
+  position: absolute;
+  display: inline-block;
+  border-bottom: 15px solid transparent;
+  border-top: 15px solid transparent;
+  border-left: 15px solid rgb(5, 69, 119);
+  top: 12px;
+  right: -10px;
+}
+
+.timeline .container.container.right .text .arrow {
+  border-bottom: 15px solid transparent;
+  border-top: 15px solid transparent;
+  border-right: 15px solid rgb(5, 69, 119);
+  border-left: 15px solid transparent;
+  left: -25px;
+}
+
+main {
+  margin-bottom: 100px;
+}
+
+@media screen and (max-width: 500px) {
+  .timeline .container,
+  .timeline .container.right {
+    width: 100%;
+    left: 0;
+  }
+
+  .container .text .arrow,
+  .timeline .container .circle,
+  .timeline::after {
+    display: none;
   }
 }

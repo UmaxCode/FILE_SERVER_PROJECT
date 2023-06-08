@@ -34,11 +34,12 @@
             type="search"
             name="search"
             id=""
-            placeholder="search by title..."
+            value="{{search_text}}"
+            placeholder="search..."
           />
         </div>
         <div class="submit">
-          <input type="submit" value="Search" />
+          <input type="submit" value="Search" name="search-btn" />
         </div>
       </form>
     </div>
@@ -60,8 +61,13 @@
 <div class="side-bar">
   <form action="" method="post">
     {% csrf_token%}
-    <input type="search" name="search" placeholder="search by title..." />
-    <input type="submit" value="search" />
+    <input
+      type="search"
+      name="search"
+      placeholder="search by title..."
+      value="{{search_text}}"
+    />
+    <input type="submit" value="search" name="search-btn" />
   </form>
   <ul class="s-profile">
     <li><a href="{% url 'password_change' %}">Change password</a></li>
@@ -71,7 +77,7 @@
 
 <div class="content">
   <div class="message">
-    <h1>Messages</h1>
+    <h1>Documents</h1>
   </div>
 
   <div class="wrapper-content">
@@ -91,7 +97,13 @@
       </a>
     </div>
     {% empty%}
-    <h3>Now Files: come later</h3>
+    <div class="no-files">
+      <img
+        src="{% static 'images/no_document.png' %}"
+        alt="an image that signifies no documents"
+      />
+      <h2>No documents, come back later!</h2>
+    </div>
     {% endfor %}
   </div>
 </div>
