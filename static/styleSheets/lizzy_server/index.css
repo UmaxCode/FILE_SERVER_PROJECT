@@ -157,7 +157,7 @@ section {
 
   ul.log-sign li {
     display: block;
-    padding: 12px 8px;
+
     border-radius: 4px;
     margin: 15px 0;
   }
@@ -168,7 +168,7 @@ section {
 
   ul.log-sign li a {
     display: block;
-    padding: 0px 0;
+    padding: 12px 8px;
   }
 
   ul.log-sign li a::after {

@@ -10,7 +10,8 @@ class AdminDocument(admin.ModelAdmin):
         "title",
         "description",
         "file",
-        "num_downloads"
+        "num_downloads",
+        "num_shares"
     )
 
 

@@ -14,9 +14,17 @@ body {
 
 img {
   pointer-events: none;
-  width: 100%;
+  width: min(400px, 100%);
   border-radius: 4px 4px 0 0;
+  height: 400px;
+  object-fit: cover;
   display: flex;
+  margin: auto;
+}
+
+.image {
+  background-color: #fff;
+  border-radius: 5px;
 }
 
 h1 {
@@ -30,7 +38,7 @@ h1 {
   margin: 30px auto;
 }
 .description {
-  background-color: white;
+  background-color: #f2f2f2;
   padding: 12px;
 }
 
@@ -42,10 +50,10 @@ h1 {
   display: inline-block;
   background-color: rgb(245, 75, 37);
   margin-right: 8px;
-  padding: 12px 25px;
+  padding: 12px;
   border-radius: 4px;
   color: white;
-
+  text-align: left;
   text-decoration: none;
 }
 
@@ -63,7 +71,9 @@ h1 {
 
 .pre-down .share {
   background-color: royalblue;
-  padding: 12px 30px;
+  padding: 12px;
+  padding-right: 20px;
+  text-align: left;
 }
 
 .modal {

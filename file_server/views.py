@@ -50,6 +50,9 @@ def details_view(request, pk):
     if request.method == "POST":
         document = Document.objects.get(pk=pk)
 
+        document.num_shares = document.num_shares + 1
+        document.save()
+
         email = request.POST["email"]
 
         title = document.title
@@ -77,19 +80,22 @@ def download_document(request, pk):
     document = Document.objects.get(pk=pk)
     file_path = document.file.path
 
+    document.num_downloads = document.num_downloads + 1
+    document.save()
+
     with open(file_path, 'rb') as file:
         
         data = file.read()
 
         extension = getFileExtension(file_path)
 
-        if extension == '.pdf':
+        if extension.lower() == '.pdf' :
             response = HttpResponse(data, content_type='application/pdf')
-        elif extension == '.mp4':
+        elif extension.lower() == '.mp4':
             response = HttpResponse(data, content_type='video/mp4')
-        elif extension == '.mp3':
+        elif extension.lower() == '.mp3':
             response = HttpResponse(data, content_type='audio/mpeg')
-        elif extension == ".jpg":
+        elif extension.lower() == ".jpg":
             response = HttpResponse(data, content_type='image/jpeg')
         else:
             response = HttpResponse(data, content_type='application/octet-stream')

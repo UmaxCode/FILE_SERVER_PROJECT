@@ -12,6 +12,8 @@ class Document(models.Model):
 
     num_downloads = models.PositiveBigIntegerField(default=0)
 
+    num_shares = models.PositiveBigIntegerField(default=0)
+
     def __str__(self):
         
         return self.title
