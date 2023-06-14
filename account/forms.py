@@ -5,6 +5,14 @@ from django.contrib.auth.models import User
 
 
 class SignUpForm(forms.Form):
+
+    username = forms.CharField(
+        label="Username",
+        widget=forms.TextInput(attrs={
+            'placeholder': 'username'
+        })
+      
+    )
     
     email = forms.CharField(
         label="Email",

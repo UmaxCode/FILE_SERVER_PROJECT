@@ -130,10 +130,12 @@ LOGOUT_REDIRECT_URL = 'index'
 
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_HOST_USER = "maxwellodoom1729@gmail.com"
-EMAIL_HOST_PASSWORD = "tqzjondeherwdyyz"
+EMAIL_HOST_PASSWORD = "nriypxtqcgprgxua"
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+PASSWORD_RESET_TIMEOUT = 14400
 
 
 MEDIA_URL = '/media/files/'
