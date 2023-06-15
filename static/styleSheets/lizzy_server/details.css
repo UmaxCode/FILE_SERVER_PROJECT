@@ -131,3 +131,13 @@ h1 {
 i {
   margin-right: 4px;
 }
+
+.message {
+  padding: 20px;
+  background-color: rgba(54, 133, 54, 0.959);
+  border-radius: 4px;
+  color: white;
+  text-align: center;
+  width: min(600px, 90%);
+  margin: 20px auto;
+}

@@ -1,11 +1,6 @@
-/Static/images
-
 migrations/
-
 __pycache__/
-
-
-/media
+.env
 
 
 

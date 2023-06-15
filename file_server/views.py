@@ -6,6 +6,8 @@ from django.views.generic import DetailView
 from pathlib import Path
 from django.core.mail import EmailMessage
 from .models import Document
+from file_server_project.thread import EmailThread
+from django.contrib import messages
 
 # Create your views here.
 
@@ -28,8 +30,10 @@ def homepage_view(request):
             documents = query_result
 
 
+    user = request.user.username
+
     context = {
-        "user_profile":request.user,
+        "user_profile":user[0],
         "documents": documents,
         'search_text': search_text
         }
@@ -62,8 +66,8 @@ def details_view(request, pk):
         email_send = EmailMessage(title, description,'settings.EMAIL_HOST_USER', [email])
 
         email_send.attach_file(file.path)
-        email_send.send()
-
+        EmailThread(email_send).start()
+        messages.success(request, f"Document sent to {email}")
         return redirect("details", pk=pk)
         
 

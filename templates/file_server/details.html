@@ -4,6 +4,13 @@
   href="{% static 'styleSheets/lizzy_server/details.css'%}"
 />
 {% endblock%} {% block content %}
+{% if messages %} {% for message in messages%}
+<div
+  class="message"
+>
+  {{message}}
+</div>
+{%endfor%} {% endif%}
 <h1>{{document.title}}</h1>
 <div class="container">
   <div class="file-card">
