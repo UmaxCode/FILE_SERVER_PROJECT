@@ -137,7 +137,6 @@ EMAIL_USE_TLS = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 PASSWORD_RESET_TIMEOUT = 14400
 
-
 MEDIA_URL = '/media/files/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, "media/store/pdf_files")
